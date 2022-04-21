@@ -1,0 +1,15 @@
+{
+  "name": "country-scores-calculator2",
+  "version": "1.0.0",
+  "description": "Discord bot for calculating scores for Swedish BSWC tryouts",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wyxi",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "winston": "^3.7.2"
+  }
+}
