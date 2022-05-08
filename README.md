@@ -2,6 +2,8 @@ A simple Discord bot for tryouts for Sweden's team in Beat Saber World Cup 2022.
 
 With some small modifications this can be used for arbitrary countries and map pools.
 
+Code quality is a bit inconsistent.
+
 # Dependencies/requirements
 
 Runs on nodejs version v16.14.2 and npm version 8.7.0, have not tested others but it will probably be fine as long as its not too old.
