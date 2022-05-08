@@ -9,7 +9,13 @@
   "author": "Wyxi",
   "license": "ISC",
   "dependencies": {
+    "@discordjs/builders": "^0.13.0",
+    "@discordjs/rest": "^0.4.1",
+    "ascii-table": "^0.0.9",
+    "discord-api-types": "^0.31.2",
     "discord.js": "^13.6.0",
+    "fs-extra": "^10.1.0",
+    "node-fetch": "^2.6.7",
     "winston": "^3.7.2"
   }
 }
