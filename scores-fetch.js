@@ -153,7 +153,6 @@ async function fetchLeaderboard(id) {
 	while(!done) {
 		var url = makeurl(id, page);
 		var currentResult;
-		console.log("fetching " + url);
 		await fetch(url)
 			.then(res => res.text())
 			.then(text => currentResult = JSON.parse(text));

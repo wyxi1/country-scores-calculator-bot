@@ -27,7 +27,7 @@ client.on('interactionCreate', async interaction => {
 		await interaction.reply('Pong!');
 	} else if (commandName === 'bswc-2022-tryouts') {
 		
-		console.log(user.username + " (" + user.id + ")");
+		console.log("Command scores by " + user.username + " (" + user.id + ")");
 		var mapSets = mappool.mapPools;
 		var msg = "";
 		for(var mapSetName in mapSets) {
@@ -45,10 +45,13 @@ client.on('interactionCreate', async interaction => {
 			msg += table.toString();
 			msg += "```";
 		}
+		console.log("Success");
 		await interaction.reply(msg);
 	} else if (commandName === 'bswc-2022-tryouts-refresh') {
+		console.log("Command refresh by " + user.username + " (" + user.id + ")");
 		if(!checkLastRefresh()) {
 			await interaction.reply("Scores were already refreshed within the last " + REFRESH_COOLDOWN_MINS + " minutes.");
+			console.log("Refresh on cooldown");
 			return;
 		}
 		updateRefresh();
@@ -59,6 +62,7 @@ client.on('interactionCreate', async interaction => {
 			
 			var mapSet = mapSets[mapSetName];
 			await fetchMapSet(mapSet);
+			console.log("Refreshed " + mapSetName);
 		}
 	} 
 });
