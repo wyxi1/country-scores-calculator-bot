@@ -4,7 +4,6 @@ const { token } = require('./auth.json');
 const { calculateMapSet, fetchMapSet } = require('./scores-fetch.js');
 const mappool = require('./mappool');
 const fse = require('fs-extra');
-const fs = require('fs');
 const AsciiTable = require('ascii-table')
 
 // Create a new client instance
@@ -16,7 +15,7 @@ client.once('ready', () => {
 });
 
 const PLAYERS_TO_DISPLAY = 10;
-
+const REFRESH_COOLDOWN_MINS = 10;
 
 client.on('interactionCreate', async interaction => {
 	console.log("Got interaction");
@@ -49,8 +48,15 @@ client.on('interactionCreate', async interaction => {
 		console.log(msg);
 		await interaction.reply(msg);
 	} else if (commandName === 'bswc-2022-tryouts-refresh') {
+		if(!checkLastRefresh()) {
+			await interaction.reply("Scores were already refreshed within the last " + REFRESH_COOLDOWN_MINS + " minutes.");
+			return;
+		}
+		
+		updateRefresh();
+		
 		var mapSets = mappool.mapPools;
-		await interaction.reply("Refreshing scores");
+		await interaction.reply("Refreshing scores, done in ~20 seconds");
 		for(var mapSetName in mapSets) {
 			
 			var mapSet = mapSets[mapSetName];
@@ -64,6 +70,36 @@ function formatAccPercent(acc) {
 	//https://stackoverflow.com/questions/6134039/format-number-to-always-show-2-decimal-places
 	var percent = (Math.round(acc * 100) / 100).toFixed(2);
 	return percent + "%";
+}
+
+
+function refreshFilePath() {
+	let path = __dirname + "/scores/lastrefresh.json";
+	return path;
+}
+
+//Return true if ok, false if not.
+function checkLastRefresh() {
+	let path = refreshFilePath();
+	
+	if (!fse.existsSync(path)) {
+		return true;
+	}
+	
+	var obj = fse.readJsonSync(path);
+	//https://stackoverflow.com/questions/7709803/javascript-get-minutes-between-two-dates
+	var then = new Date(obj.time);
+	var current = new Date();
+	var diffMs = current - then;
+	var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+	
+	return diffMins > REFRESH_COOLDOWN_MINS;
+};
+
+function updateRefresh() {
+	let path = refreshFilePath();
+	var obj = {time: new Date().toString()};
+	fse.outputJsonSync(path, obj);
 }
 
 // Login to Discord with your client's token
