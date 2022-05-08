@@ -18,21 +18,21 @@ const PLAYERS_TO_DISPLAY = 10;
 const REFRESH_COOLDOWN_MINS = 10;
 
 client.on('interactionCreate', async interaction => {
-	console.log("Got interaction");
 	if (!interaction.isCommand()) return;
 
 	const { commandName } = interaction;
+	const user = interaction.member.user;
 
 	if (commandName === 'ping') {
 		await interaction.reply('Pong!');
 	} else if (commandName === 'bswc-2022-tryouts') {
+		
+		console.log(user.username + " (" + user.id + ")");
 		var mapSets = mappool.mapPools;
-		console.log(mapSets);
 		var msg = "";
 		for(var mapSetName in mapSets) {
 			
 			var mapSet = mapSets[mapSetName];
-			console.log(mapSet);
 			var leaderboard = await calculateMapSet(mapSet);
 			msg += "\n```\n";
 			var table = new AsciiTable(mapSetName);
@@ -45,7 +45,6 @@ client.on('interactionCreate', async interaction => {
 			msg += table.toString();
 			msg += "```";
 		}
-		console.log(msg);
 		await interaction.reply(msg);
 	} else if (commandName === 'bswc-2022-tryouts-refresh') {
 		if(!checkLastRefresh()) {
