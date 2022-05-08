@@ -52,7 +52,6 @@ client.on('interactionCreate', async interaction => {
 			await interaction.reply("Scores were already refreshed within the last " + REFRESH_COOLDOWN_MINS + " minutes.");
 			return;
 		}
-		
 		updateRefresh();
 		
 		var mapSets = mappool.mapPools;
@@ -87,11 +86,10 @@ function checkLastRefresh() {
 	}
 	
 	var obj = fse.readJsonSync(path);
-	//https://stackoverflow.com/questions/7709803/javascript-get-minutes-between-two-dates
 	var then = new Date(obj.time);
 	var current = new Date();
 	var diffMs = current - then;
-	var diffMins = Math.round(((diffMs % 86400000) % 3600000) / 60000); // minutes
+	var diffMins = diffMs / 60000;
 	
 	return diffMins > REFRESH_COOLDOWN_MINS;
 };
