@@ -1,24 +1,20 @@
 var MAP_POOLS = {
-	"overall": [
-		{id:"348320", notes:2144},
-		{id:"348299", notes:767},
-		{id:"329702", notes:1440},
-		{id:"348061", notes:1742},
-		{id:"342452", notes:1358},
-		{id:"348150", notes:1111},
-		{id:"348344", notes:4563},
-		{id:"343021", notes:2854}
+	"Speed and Tech": [
+		{id:"388758", notes:681}, //Tylenol
+		{id:"384302", notes:1228}, //yotsuya
+		{id:"431891", notes:1212}, //shanti
+		{id:"363046", notes:1724}, //DiXaster
+		{id:"368846", notes:3345}, //Celtchar 
+		{id:"446399", notes:2920} //Construxion
 	],
-	"acc": [
-		{id:"300833", notes: 940},
-		{id:"329873", notes: 1118},
-		{id:"315634", notes: 884},
-		{id:"346634", notes: 972},
-		{id:"190915", notes: 498},
-		{id:"139978", notes: 383},
-		{id:"121456", notes: 496},
-		{id:"311274", notes: 494},
-		{id:"318941", notes: 1031},
+	"Acc and midspeed": [
+		{id:"372534", notes: 961}, //Trapped in the past
+		{id:"369399", notes: 544}, // DUAL BREAKER
+		{id:"376259", notes: 1359}, //Minazoko //TODO NOTES
+		{id:"346634", notes: 934}, //Cinco
+		{id:"406936", notes: 1301}, //If you can't hang
+		{id:"417776", notes: 1029}, //Kotone - punishment
+		{id:"419538", notes: 634}  //Chakra
 	]
 };
 
