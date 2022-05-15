@@ -11,7 +11,7 @@ var MAP_POOLS = {
 		{id:"372534", notes: 961}, //Trapped in the past
 		{id:"369399", notes: 544}, // DUAL BREAKER
 		{id:"376259", notes: 1359}, //Minazoko //TODO NOTES
-		{id:"346634", notes: 934}, //Cinco
+		{id:"396795", notes: 934}, //Cinco
 		{id:"406936", notes: 1301}, //If you can't hang
 		{id:"417776", notes: 1029}, //Kotone - punishment
 		{id:"419538", notes: 634}  //Chakra
