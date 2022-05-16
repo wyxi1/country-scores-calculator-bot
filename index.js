@@ -14,7 +14,7 @@ client.once('ready', () => {
 	console.log('Ready!');
 });
 
-const PLAYERS_TO_DISPLAY = 11;
+const PLAYERS_TO_DISPLAY = 10;
 const REFRESH_COOLDOWN_MINS = 10;
 
 client.on('interactionCreate', async interaction => {
@@ -77,7 +77,7 @@ client.on('interactionCreate', async interaction => {
 		var avgAccs = '';
 		var maps = '';
 
-		for(var i = 1; i < leaderboard.length && i < PLAYERS_TO_DISPLAY ; i++) {
+		for(var i = 0; i < leaderboard.length && i < PLAYERS_TO_DISPLAY ; i++) {
 			var player = leaderboard[i];
 			userNames += '`#'+ i + '`'+ '\u200b \u200b \u200b - \u200b \u200b \u200b' + '**' + player.name + '**' + '\u200b \u200b \u200b \u200b \u200b \u200b \n\n'
 			avgAccs += '`' + formatAccPercent(player.acc).toString()+ '`' + '\n\n'
@@ -104,7 +104,7 @@ client.on('interactionCreate', async interaction => {
 		var avgAccs = '';
 		var maps = '';
 
-		for(var i = 1; i < leaderboard.length && i < PLAYERS_TO_DISPLAY ; i++) {
+		for(var i = 0; i < leaderboard.length && i < PLAYERS_TO_DISPLAY ; i++) {
 			var player = leaderboard[i];
 			userNames += '`#'+ i + '`'+ '\u200b \u200b \u200b - \u200b \u200b \u200b' + '**' + player.name + '**' + '\u200b \u200b \u200b \u200b \u200b \u200b \n\n'
 			avgAccs += '`' + formatAccPercent(player.acc).toString()+ '`' + '\n\n'
