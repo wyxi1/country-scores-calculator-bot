@@ -4,8 +4,10 @@ const { Routes } = require('discord-api-types/v9');
 const { clientId, guildId, token } = require('./auth.json');
 
 const commands = [
-	//new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
+	new SlashCommandBuilder().setName('ping').setDescription('Replies with pong!'),
 	//new SlashCommandBuilder().setName('server').setDescription('Replies with server info!'),
+	new SlashCommandBuilder().setName('speed-and-tech').setDescription('Speed and Tech Stats'),
+	new SlashCommandBuilder().setName('acc-and-midspeed').setDescription('Acc and midspeed Stats'),
 	new SlashCommandBuilder().setName('bswc-2022-tryouts').setDescription('Stats for BSWC 2022 Swedish tryouts'),
 	new SlashCommandBuilder().setName('bswc-2022-tryouts-refresh').setDescription('Refresh stats for BSWC 2022 Swedish tryouts.'),
 ]
@@ -13,10 +15,13 @@ const commands = [
 
 const rest = new REST({ version: '9' }).setToken(token);
 
-/* rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
+/*
+rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
 	.then(() => console.log('Successfully registered application commands.'))
-	.catch(console.error); */
-	
+	.catch(console.error); 
+	*/
+
+
 (async () => {
 	try {
 		console.log('Started refreshing application (/) commands.');
@@ -29,4 +34,4 @@ const rest = new REST({ version: '9' }).setToken(token);
 	} catch (error) {
 		console.error(error);
 	}
-})();
+})(); 

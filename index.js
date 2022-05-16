@@ -1,5 +1,5 @@
 // Require the necessary discord.js classes
-const { Client, Intents } = require('discord.js');
+const { Client, Intents, MessageEmbed } = require('discord.js');
 const { token } = require('./auth.json');
 const { calculateMapSet, fetchMapSet } = require('./scores-fetch.js');
 const mappool = require('./mappool');
@@ -24,7 +24,9 @@ client.on('interactionCreate', async interaction => {
 	const user = interaction.member.user;
 
 	if (commandName === 'ping') {
-		await interaction.reply('Pong!');
+		await interaction.reply('pong');
+
+
 	} else if (commandName === 'bswc-2022-tryouts') {
 		
 		console.log("Command scores by " + user.username + " (" + user.id + ")");
@@ -33,6 +35,7 @@ client.on('interactionCreate', async interaction => {
 		for(var mapSetName in mapSets) {
 			
 			var mapSet = mapSets[mapSetName];
+			
 			var leaderboard = await calculateMapSet(mapSet);
 			msg += "\n```\n";
 			var table = new AsciiTable(mapSetName);
@@ -46,7 +49,7 @@ client.on('interactionCreate', async interaction => {
 			msg += "```";
 		}
 		console.log("Success");
-		await interaction.reply(msg);
+		await interaction.reply(msg)
 	} else if (commandName === 'bswc-2022-tryouts-refresh') {
 		console.log("Command refresh by " + user.username + " (" + user.id + ")");
 		if(!checkLastRefresh()) {
@@ -64,7 +67,60 @@ client.on('interactionCreate', async interaction => {
 			await fetchMapSet(mapSet);
 			console.log("Refreshed " + mapSetName);
 		}
-	} 
+	} else if (commandName === 'speed-and-tech') {
+		var mapSets = mappool.mapPools;
+		var mapSet = mapSets['Speed and Tech'];
+		var leaderboard = await calculateMapSet(mapSet);
+		var embedmsg = new MessageEmbed().setTitle('Speed and Tech')
+
+		var userNames= '';
+		var avgAccs = '';
+		var maps = '';
+
+		for(var i = 0; i < leaderboard.length && i < PLAYERS_TO_DISPLAY ; i++) {
+			var player = leaderboard[i];
+			userNames += '`#'+ i + '`'+ '\u200b \u200b \u200b - \u200b \u200b \u200b' + '**' + player.name + '**' + '\u200b \u200b \u200b \u200b \u200b \u200b \n\n'
+			avgAccs += '`' + formatAccPercent(player.acc).toString()+ '`' + '\n\n'
+			maps += '`' + player.maps.toString() + '`' + '\n\n'
+			
+		}
+		embedmsg.addFields({name: "Player", value: userNames, inline: true},
+		{name: "Average acc \u200b \u200b \u200b\u200b \u200b \u200b", value: avgAccs, inline: true},
+		{name: "Maps played", value: maps, inline: true})
+		console.log('Success')
+		await interaction.reply({ embeds: [embedmsg], ephemeral: false })
+		.then(() => console.log('Reply sent.'))
+		.catch(console.error);
+
+
+	} else if (commandName === 'acc-and-midspeed')
+	var mapSets = mappool.mapPools;
+
+		var mapSet = mapSets['Acc and midspeed'];
+		var leaderboard = await calculateMapSet(mapSet);
+		var embedMsgAcc = new MessageEmbed().setTitle('Acc and midspeed')
+
+		var userNames= '';
+		var avgAccs = '';
+		var maps = '';
+
+		for(var i = 0; i < leaderboard.length && i < PLAYERS_TO_DISPLAY ; i++) {
+			var player = leaderboard[i];
+			userNames += '`#'+ i + '`'+ '\u200b \u200b \u200b - \u200b \u200b \u200b' + '**' + player.name + '**' + '\u200b \u200b \u200b \u200b \u200b \u200b \n\n'
+			avgAccs += '`' + formatAccPercent(player.acc).toString()+ '`' + '\n\n'
+			maps += '`' + player.maps.toString() + '`' + '\n\n'
+			
+		}
+		embedMsgAcc.addFields({name: "Player", value: userNames, inline: true},
+		{name: "Average acc \u200b \u200b \u200b\u200b \u200b \u200b", value: avgAccs, inline: true},
+		{name: "Maps played", value: maps, inline: true})
+		console.log('Success')
+
+		await interaction.reply({ embeds: [embedMsgAcc], ephemeral: false })
+		.then(() => console.log('Reply sent.'))
+		.catch(console.error);
+
+	
 });
 
 function formatAccPercent(acc) {
