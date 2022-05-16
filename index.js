@@ -68,7 +68,6 @@ client.on('interactionCreate', async interaction => {
 			console.log("Refreshed " + mapSetName);
 		}
 	} else if (commandName === 'speed-and-tech') {
-		let channel = client.channels.cache.get('975771482464583682')
 		var mapSets = mappool.mapPools;
 		var mapSet = mapSets['Speed and Tech'];
 		var leaderboard = await calculateMapSet(mapSet);
@@ -97,7 +96,6 @@ client.on('interactionCreate', async interaction => {
 	} else if (commandName === 'acc-and-midspeed')
 	var mapSets = mappool.mapPools;
 
-		let channel = client.channels.cache.get('975771482464583682')
 		var mapSet = mapSets['Acc and midspeed'];
 		var leaderboard = await calculateMapSet(mapSet);
 		var embedMsgAcc = new MessageEmbed().setTitle('Acc and midspeed')
