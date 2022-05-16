@@ -79,7 +79,7 @@ client.on('interactionCreate', async interaction => {
 
 		for(var i = 0; i < leaderboard.length && i < PLAYERS_TO_DISPLAY ; i++) {
 			var player = leaderboard[i];
-			userNames += '`#'+ i + '`'+ '\u200b \u200b \u200b - \u200b \u200b \u200b' + '**' + player.name + '**' + '\u200b \u200b \u200b \u200b \u200b \u200b \n\n'
+			userNames += '`#'+ (i+1) + '`'+ '\u200b \u200b \u200b - \u200b \u200b \u200b' + '**' + player.name + '**' + '\u200b \u200b \u200b \u200b \u200b \u200b \n\n'
 			avgAccs += '`' + formatAccPercent(player.acc).toString()+ '`' + '\n\n'
 			maps += '`' + player.maps.toString() + '`' + '\n\n'
 			
@@ -106,7 +106,7 @@ client.on('interactionCreate', async interaction => {
 
 		for(var i = 0; i < leaderboard.length && i < PLAYERS_TO_DISPLAY ; i++) {
 			var player = leaderboard[i];
-			userNames += '`#'+ i + '`'+ '\u200b \u200b \u200b - \u200b \u200b \u200b' + '**' + player.name + '**' + '\u200b \u200b \u200b \u200b \u200b \u200b \n\n'
+			userNames += '`#'+ (i+1) + '`'+ '\u200b \u200b \u200b - \u200b \u200b \u200b' + '**' + player.name + '**' + '\u200b \u200b \u200b \u200b \u200b \u200b \n\n'
 			avgAccs += '`' + formatAccPercent(player.acc).toString()+ '`' + '\n\n'
 			maps += '`' + player.maps.toString() + '`' + '\n\n'
 			

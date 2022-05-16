@@ -46,6 +46,8 @@ Actually I don't know which of these are required at a minimimum this is my firs
 
 * `/bswc-2022-tryouts` - prints out current standings table
 * `/bswc-2022-tryouts-refresh` - Refresh scores, 10 minute cooldown
+* `/speed-and-tech` - Leaderboard for speed and tech, embeds output
+* `/acc-and-midspeed` - Leaderboard for acc and midspeed, embeds output
 
 # Local files cache
 
